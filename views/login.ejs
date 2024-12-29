@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div>
+            <caption><h1>Đăng nhập</h1></caption>
+            <input type="text" name="username" id="ip_username" placeholder="Tên đăng nhập">
+            <br>
+            <input type="text" name="password" id="ip_password" placeholder="Mật khẩu">
+            <button class="btn btn-success" id="btn_login">Đăng nhập</button>
+    </div>
+    <div>
+        <caption><h1>Đăng ký</h1></caption>
+        <input type="text" name="username" id="ip_username2" placeholder="Tên đăng nhập">
+        <br>
+        <input type="text" name="fullname" id="ip_full_name" placeholder="Họ tên">
+        <br>
+        <input type="text" name="password" id="ip_password2" placeholder="Mật khẩu">
+        <br>
+        <input type="text" name="password" id="ip_repassword2" placeholder="Nhập lại Mật khẩu">
+        <button class="btn btn-success" id="btn_register">Đăng ký</button>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+    //đăng nhập
+    const btn_login = document.getElementById("btn_login");
+    const ip_username = document.getElementById("ip_username");
+    const ip_password = document.getElementById("ip_password");
+
+    btn_login.addEventListener("click",() => {
+        const username = ip_username.value
+        const password = ip_password.value
+        const obj = {
+            username,
+            password
+        }        
+        fetch('/api/accounts/login', {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(obj)
+        })
+        .then(res => res.json())
+        .then(result => {
+            if(result.statusCode){
+                alert(result.message);
+            }
+            else{
+                localStorage.setItem('username', result.username)
+                window.location = '/chat'
+            }
+        })
+        .catch(error => {
+            alert("Error: " + error.message)
+        })
+    })
+</script>
+
+<script>
+    //đăng ký
+    const btn_register = document.getElementById("btn_register");
+    const ip_username2 = document.getElementById("ip_username2");
+    const ip_password2 = document.getElementById("ip_password2");
+    const ip_repassword2 = document.getElementById("ip_repassword2");
+    const ip_full_name = document.getElementById("ip_full_name");
+
+    btn_register.addEventListener('click', ()=>{
+        const username = ip_username2.value
+        const password = ip_password2.value
+        const repassword = ip_repassword2.value
+        const fullname = ip_full_name.value
+
+        if(password !== repassword){
+            alert("Mật khẩu không khớp")
+            return;
+        }
+        const obj = {
+            username,
+            password,
+            fullname
+        }        
+        fetch('/api/accounts/register', {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(obj)
+        })
+        .then(res => res.json())
+        .then(result => {
+            if(result.statusCode){
+                alert(result.message);
+            }
+            else{
+                alert('Đăng ký thành công. Hãy đăng nhập!')
+            }
+        })
+        .catch(error => {
+            alert("Error: " + error.message)
+        })
+    })
+</script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+

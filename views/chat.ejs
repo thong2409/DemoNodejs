@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<div style="display: flex;">
+    <ul class="list_user">
+        <% accounts.forEach(account => { %>
+            <li>
+                <div>
+                    Username: <p><%= account.username %></p>
+                </div>
+                <div>
+                    Fullname: <p><%= account.fullname %></p>
+                </div>
+            </li>
+        <% }) %>
+        
+    </ul>
+
+    <div class="container">
+        <div class="container_join">
+            <input type="text" id="room" placeholder="">
+            <button id="btn_join">Vào phòng</button>
+        </div>
+
+
+        <ul id="ul_message">
+            
+        </ul>
+        
+        <div class="container_send">
+            <input type="text" id="message" placeholder="">
+            <img src="" alt="" id="img_message" style="width: 20%; display: none;">
+            <input type="file"  name="" style="width: 20%;" id="ip_image">
+            <button id="btn_send">Gửi</button>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/client.js"></script>

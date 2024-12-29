@@ -1,0 +1,125 @@
+body, *{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+.container{
+    width: 400px;
+    height: 100vh;
+    padding: 10px;
+    background-color: azure;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.container_join{
+    width: 100%;
+    height: 5%;
+    display: flex;
+}
+.container_join input{
+    width: 78%;
+    padding: 5px;
+}
+.container_join button{
+    width: 22%;
+    padding: 5px;
+}
+#ul_message{
+    list-style: none;
+    width: 100%;
+    height: 90%;
+    overflow: scroll;
+}
+#ul_message li{
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+
+}
+#ul_message li span{
+    position: relative;
+}
+
+#ul_message li span p{
+    width: fit-content;
+    background-color: blue;
+    padding: 5px;
+    color: white;
+    border-radius: 8px;
+    float: left;
+    clear: both;
+}
+
+.choose_emotion {
+    margin: 0 5px;
+    position: relative;
+    display: none !important;
+}
+#ul_message li:hover .choose_emotion{
+    display: block !important;
+}
+
+.emotions{
+    background-color: #333;
+    display: flex;
+    padding: 5px;
+    border-radius: 12px;
+    position: absolute;
+    bottom: 20px;
+}
+
+.emotions i{
+    margin: 3px;
+    transition: linear 0.2s;
+}
+
+.emotions i:hover{
+    transform: scale(1.5);
+}
+
+.right {
+    flex-direction: row-reverse;
+}
+.right .emotions {
+    margin-right: 50px;
+    left: -90;
+}
+
+.container_send{
+    width: 100%;
+    height: 5%;
+    display: flex;  
+}
+
+#message{
+    width: 80%;
+    padding: 5px;
+}
+#btn_send{
+    width: 20%;
+    padding: 5px;
+}
+
+/* list user css */
+.list_user{
+    list-style: none;
+    background-color: azure;
+    width: 30%;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow: scroll;
+}
+.list_user li{
+    background-color: cyan;
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 10px;
+}
+.list_user li div {
+    display: flex;
+}
